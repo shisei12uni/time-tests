@@ -17,14 +17,17 @@ def test_input_dont_overlap():
     assert result == expected
 
 def test_input_both_with_several_interval():
+    """testing two time ranges that both contain several intervals each"""
     time1 = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00", 2, 30)
     time2 = time_range("2010-01-12 10:30:00", "2010-01-12 11:45:00", 2, 60)
     result = compute_overlap_time(time1, time2)
     expected = [('2010-01-12 10:30:00', '2010-01-12 10:59:45'),
+                ('2010-01-12 11:00:15', '2010-01-12 11:07:00'),
                 ('2010-01-12 11:08:00', '2010-01-12 11:45:00')]
     assert result == expected
 
 def test_input_ends_at_start():
+    """testing two time ranges that end exactly at the same time when the other starts"""
     time1 = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00")
     time2 = time_range("2010-01-12 12:00:00", "2010-01-12 12:10:00")
     result = compute_overlap_time(time1, time2)
