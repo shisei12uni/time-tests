@@ -1,4 +1,5 @@
 from times import time_range, compute_overlap_time
+from pytest import raises
 
 def test_given_input():
     large = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00")
@@ -33,3 +34,10 @@ def test_input_ends_at_start():
     result = compute_overlap_time(time1, time2)
     expected = []
     assert result == expected
+    # apprarently using self.assertEqual(x,y) is better than x==y
+    # you get nicer messages
+
+def test_input_validation():
+    """input validation, does code raise error when start time > end time?"""
+    with raises(ValueError):
+        time_range("2010-01-12 12:00:00", "2010-01-12 10:00:00")
