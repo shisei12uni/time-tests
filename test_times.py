@@ -41,3 +41,9 @@ def test_input_validation():
     """input validation, does code raise error when start time > end time?"""
     with raises(ValueError):
         time_range("2010-01-12 12:00:00", "2010-01-12 10:00:00")
+    """
+    sample solution is
+    with pytest.raises(ValueError) as e:
+        time_range("2010-01-12 10:00:00", "2010-01-12 09:30:00")
+    assert e.match("The end of the time range has to come strictly after its start)
+    """
