@@ -9,6 +9,7 @@ def test_given_input():
     assert result == expected
 
 def test_input_dont_overlap():
+    """testing no overlap between inputs"""
     time2010 = time_range("2010-01-12 10:00:00", "2010-01-12 12:00:00")
     time2020 = time_range("2020-01-12 10:30:00", "2020-01-12 10:45:00")
     result = compute_overlap_time(time2010, time2020)
